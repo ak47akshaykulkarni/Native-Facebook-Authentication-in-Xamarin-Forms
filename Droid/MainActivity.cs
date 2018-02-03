@@ -25,24 +25,23 @@ namespace GigUpdates.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             #region LetMeHelpYouGetKeyHashes
-            PackageInfo info = this.PackageManager.GetPackageInfo("in.gigupdates.droid",
-                PackageInfoFlags.Signatures);
+            PackageInfo info = this.PackageManager.GetPackageInfo("YOUR_PACKAGE_NAME_HERE",PackageInfoFlags.Signatures);
             foreach (Android.Content.PM.Signature signature in info.Signatures)
             {
                 MessageDigest md = MessageDigest.GetInstance("SHA");
 
                 md.Update(signature.ToByteArray());
-                ///For the first run put a debugger on below line. copy keyhash value you get and paste in  
-                /// facebook app settings on https://developers.facebook.com/apps/YOURAPPID/basic
-                /// then remove this region "LetMeHelpYouGetKeyHashes"
+                //For the first run put a debugger on below line. copy keyhash value you get and paste in  
+                // facebook app settings on https://developers.facebook.com/apps/YOURAPPID/basic
+                // then remove this region "LetMeHelpYouGetKeyHashes"
                 string keyhash = Convert.ToBase64String(md.Digest());
                 Console.WriteLine("keyhash", keyhash);
             }
             #endregion
 
-            /// Okay, want to thank me?
-            /// do visit http://yekarlo.hol.es
-            /// You are welcome in advance!
+            // Okay, want to thank me?
+            // do visit http://yekarlo.hol.es
+            // You are welcome in advance!
             FacebookSdk.SdkInitialize(this);
 
             DependencyService.Register<IFacebookManager, FacebookManager>();
