@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GigUpdates.GigUpdatesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GigUpdates"
+    xmlns:behaviors="clr-namespace:GigUpdates.Behaviors;assembly=GigUpdates"
+    xmlns:b="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors">
+    <StackLayout>
+        <Button x:Name="FbLogin" Text="Login with facebook" BackgroundColor="Black"  TextColor="Aqua">
+            <Button.Behaviors>
+                <behaviors:AnimateSizeBehavior EasingFunction="SinIn" Scale="0.50" />
+            </Button.Behaviors>
+        </Button>
+        <StackLayout x:Name="UserDataPanel" BindingContext="{Binding FacebookUser, Mode=TwoWay}">
+            <Frame BackgroundColor="Black" Margin="10" CornerRadius="20" Padding="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="{Binding picture.data.url}" HeightRequest="120" WidthRequest="120"/>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding first_name}" TextColor="#f35e20"  FontSize="Large"/>
+                            <Label Text="  " FontSize="Large"/>
+                            <Label Text="{Binding last_name}" TextColor="#f35e20" FontSize="Large" />
+                            <Label Text="{Binding gender}" TextColor="Wheat" Margin="5"  HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <Label Text="{Binding email}" TextColor="Wheat" FontSize="Medium" />
+                        <Label Text="{Binding id}"  TextColor="DarkGoldenrod" FontSize="Small"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <Entry Text ="{Binding Password}"
+               Placeholder ="Password goes here"
+               HorizontalOptions="FillAndExpand">
+            <Entry.Behaviors>
+                <behaviors:AnimateSizeBehavior EasingFunction="SinOut" Scale="1.50" />
+            </Entry.Behaviors>
+        </Entry>
+        <Button x:Name="FbGetFriends" Text="Fetch facebook friends" BackgroundColor="CornflowerBlue" />
+        <Label x:Name="TotalFriendsLabel"></Label>
+        <ListView
+            x:Name="ListViewUsers"
+            ItemsSource="{Binding FacebookUsers,Mode=TwoWay}"
+            SeparatorVisibility="None"
+            HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="Aquamarine" Margin="10" CornerRadius="20" Padding="0">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Image Source="{Binding picture.data.url}" />
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding first_name}" TextColor="#f35e20"  FontSize="Large"/>
+                                        <Label Text="  " FontSize="Large"/>
+                                        <Label Text="{Binding last_name}" TextColor="#f35e20" FontSize="Large" />
+                                        <Label Text="{Binding gender}" TextColor="#A03402" Margin="5"  HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding id}"  TextColor="DarkGoldenrod" FontSize="Small"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

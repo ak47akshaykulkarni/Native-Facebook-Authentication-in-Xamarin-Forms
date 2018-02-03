@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
+  <string name="ApplicationName">YOUR_FACEBOOK_APPNAME</string>
+  <string name="facebook_app_secret">YOUR_FACEBOOK_APP_SECRET</string>
+</resources>
